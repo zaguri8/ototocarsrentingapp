@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/renter_nav_graph"
+    app:startDestination="@id/renterHomeFragment">
+
+    <fragment
+        android:id="@+id/renterHomeFragment"
+        tools:layout="@layout/fragment_renter_home"
+        android:name="com.example.ototocarsrentingapp.main.renter.RenterHomeFragment"
+        android:label="RenterHomeFragment" />
+</navigation>

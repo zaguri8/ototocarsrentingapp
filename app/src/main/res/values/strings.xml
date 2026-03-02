@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">OTOTO(Cars renting app)</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- רשימת צבעי הרכב -->
+    <string-array name="car_colors">
+        <item>הכנס צבע רכב</item>
+        <item>אדום</item>
+        <item>צהוב</item>
+        <item>ירוק</item>
+        <item>כחול</item>
+        <item>שחור</item>
+        <item>לבן</item>
+        <item>כסף</item>
+        <item>חום</item>
+        <item>סגול</item>
+        <item>ורוד</item>
+        <item>אפור</item>
+        <item>כתום</item>
+    </string-array>
+
+    <string-array name="car_types">
+        <item>הכנס סוג מודל רכב</item>
+        <item>FIAT</item>
+        <item>SUZUKI</item>
+        <item>PEUGEOT</item>
+        <item>NISSAN</item>
+        <item>MITSUBISHI</item>
+        <item>HYUNDAI</item>
+        <item>KIA</item>
+        <item>SKODA</item>
+        <item>VOLKSWAGEN</item>
+        <item>MAZDA</item>
+        <item>TOYOTA</item>
+        <item>FORD</item>
+        <item>CHEVROLET</item>
+        <item>HONDA</item>
+        <item>BYD</item>
+        <item>TESLA</item>
+        <item>AUDI</item>
+        <item>BMW</item>
+        <item>MERCEDES</item>
+    </string-array>
+</resources>
