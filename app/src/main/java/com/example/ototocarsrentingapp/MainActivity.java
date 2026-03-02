@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    // The view model for the entire app
     private MainViewModel viewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
