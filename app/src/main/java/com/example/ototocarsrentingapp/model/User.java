@@ -8,15 +8,15 @@ public class User {
     protected String address;            // כתובת
     protected String city;               // עיר
     protected UserType userType;         // ENUM: RENTER או SELLER
-
-
+    private String id;
     //בנאי של user
-    public User(String firstName,
+    public User(String id, String firstName,
                String lastName,
                String email,
                String address,
                String city,
                 UserType type) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -24,6 +24,15 @@ public class User {
         this.city = city;
         this.userType = type;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public User() {}
 
     public String getFirstName() {
@@ -50,6 +59,25 @@ public class User {
         return userType;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
 
     public boolean isRenter() {
         return userType == UserType.RENTER;

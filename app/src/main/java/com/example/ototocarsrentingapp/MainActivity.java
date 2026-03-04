@@ -52,10 +52,24 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btnMenu).setOnClickListener(v -> {
             PopupMenu menu = new PopupMenu(this, v);
             menu.inflate(R.menu.main_menu);
+            NavController navController = getNavController();
+            if (navController.getCurrentDestination() != null &&
+                    navController.getCurrentDestination().getId() == navController.getGraph().getStartDestinationId()) {
+                // We are on the "Home" screen
+                menu.getMenu().findItem(R.id.backOpt).setVisible(false);
+            }
             menu.setOnMenuItemClickListener(item -> {
-                viewModel.signOut();
-                return true;
+                if (item.getItemId() == R.id.signOutOpt) {
+                    viewModel.signOut();
+                    return true;
+                }
+                if(item.getItemId() == R.id.backOpt) {
+                    navController.popBackStack();
+                    return true;
+                }
+                return false;
             });
+
             menu.show();
         });
 

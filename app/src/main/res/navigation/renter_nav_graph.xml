@@ -7,7 +7,16 @@
 
     <fragment
         android:id="@+id/renterHomeFragment"
-        tools:layout="@layout/fragment_renter_home"
         android:name="com.example.ototocarsrentingapp.main.renter.RenterHomeFragment"
-        android:label="RenterHomeFragment" />
+        android:label="RenterHomeFragment"
+        tools:layout="@layout/fragment_renter_home">
+        <action
+            android:id="@+id/action_renterHomeFragment_to_carInfoFragment"
+            app:destination="@id/carInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/carInfoFragment"
+        android:name="com.example.ototocarsrentingapp.main.renter.CarInfoFragment"
+        android:label="CarInfoFragment"
+        tools:layout="@layout/fragment_car_info" />
 </navigation>

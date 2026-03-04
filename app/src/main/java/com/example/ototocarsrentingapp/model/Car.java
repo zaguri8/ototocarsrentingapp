@@ -84,6 +84,22 @@ public class Car {
         this.vehicleValueForOneDay = vehicleValueForOneDay;
     }
 
+    public String getCarModelName() {
+        return carModelName;
+    }
+
+    public String getCarModelTrim() {
+        return carModelTrim;
+    }
+
+    public void setCarModelName(String carModelName) {
+        this.carModelName = carModelName;
+    }
+
+    public void setCarModelTrim(String carModelTrim) {
+        this.carModelTrim = carModelTrim;
+    }
+
     // seatsNumber
     public String getSeatsNumber() {
         return seatsNumber;

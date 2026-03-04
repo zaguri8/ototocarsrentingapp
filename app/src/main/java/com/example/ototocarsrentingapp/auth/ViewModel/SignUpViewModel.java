@@ -207,7 +207,7 @@ public class SignUpViewModel extends ViewModel {
             return result;
     }
 
-    public LiveData<String>getPassword(){
+    public LiveData<String> getPassword(){
         return this.password;
     }
 
@@ -391,7 +391,9 @@ public class SignUpViewModel extends ViewModel {
     public Task<User> createRenter() {
         return createUser().continueWithTask(task -> {
             if(!task.isSuccessful()) throw task.getException();
-            Renter r = new Renter(first_name.getValue(),
+            Renter r = new Renter(
+                    task.getResult().getUser().getUid(),
+                    first_name.getValue(),
                     last_name.getValue(),
                     email.getValue(),
                     address.getValue(),
@@ -432,7 +434,9 @@ public class SignUpViewModel extends ViewModel {
        return  createUser().continueWithTask(task12 -> new ImageUploader().uploadImage("images/"+mAuth.getCurrentUser().getUid(), getImageUri())
                .continueWithTask(task ->{
                    if(!task.isSuccessful()) throw task.getException();
-                   Seller s = new Seller(first_name.getValue(),
+                   Seller s = new Seller(
+                           task12.getResult().getUser().getUid(),
+                           first_name.getValue(),
                            last_name.getValue(),
                            email.getValue(),
                            address.getValue(),
