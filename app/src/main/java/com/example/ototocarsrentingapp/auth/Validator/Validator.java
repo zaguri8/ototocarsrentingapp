@@ -1,3 +1,4 @@
+
 package com.example.ototocarsrentingapp.auth.Validator;
 
 import android.os.Build;
@@ -33,10 +34,9 @@ public class Validator {
     //============================================================
 
     //שם פרטי
-    private static final String nameRegex = "^[א-ת]{2,20}$";
-
+    private static final String nameRegex = "^[א-תA-Za-z]{2,20}$";
     //שם משפחה
-    private static final String familyNameRegex = "^[א-ת ]{2,20}$";
+    private static final String familyNameRegex =  "^[א-תA-Za-z]{2,20}$";
 
     // אימייל: חייב @, נקודה בדומיין, ללא רווחים
     private static final String emailRegex =  "^[A-Za-z0-9+_.-]+@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)+$";
@@ -48,10 +48,11 @@ public class Validator {
     private static final String birthDateRegex = "^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/([0-9]{4})$";
 
     // כתובת: אותיות, מספרים, רווחים, נקודה, פסיק, מינוס; 5-100 תווים
-    private static final String addressRegex = "^[A-Za-z0-9א-ת\\s\\.,-]{5,100}$";
+    private static final String addressRegex =
+            "^[A-Za-z0-9א-ת\\s.,\\-]{5,100}$";
 
     // עיר: אותיות עבריות ורווחים; 2-50 תווים
-    private static final String cityRegex = "^[א-ת\\s]{2,50}$";
+    private static final String cityRegex =  "^[א-תA-Za-z]{2,20}$";
 
     // מיקוד: 5 ספרות
 

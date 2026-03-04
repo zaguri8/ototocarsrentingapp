@@ -1,9 +1,7 @@
-package com.example.ototocarsrentingapp.auth.ViewModel;
+package com.example.ototocarsrentingapp.main.ViewModel;
 
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
