@@ -98,7 +98,7 @@ public class SignUp2AddressFragment extends Fragment {
             vm.onNext();
         });
 
-        //לחיצה על הכפתור אחורה
+        //לחיצה על הכפתור אחורה[
         btnBack.setOnClickListener(v -> {
             vm.onBack();
         });

@@ -28,7 +28,7 @@ public class MainViewModel extends ViewModel {
             // User Logged in, attach Database Listener
             loadUser(uid).addOnSuccessListener(userType -> {
                 // stop listening first
-                if(userDocumentListener != null) userDocumentListener.remove();
+                if(userDocumentListener != null) userDocumentListener.remove();//לוודא שאין לנו שני מאזינים באותו הזמן
                 userDocumentListener = FirebaseFirestore.getInstance()
                         .collection(userType)
                         .document(uid)

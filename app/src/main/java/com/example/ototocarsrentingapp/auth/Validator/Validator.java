@@ -36,7 +36,7 @@ public class Validator {
     private static final String nameRegex = "^[א-ת]{2,20}$";
 
     //שם משפחה
-    private static final String familyNameRegex = "^[א-ת]{2,20}$";
+    private static final String familyNameRegex = "^[א-ת ]{2,20}$";
 
     // אימייל: חייב @, נקודה בדומיין, ללא רווחים
     private static final String emailRegex =  "^[A-Za-z0-9+_.-]+@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)+$";

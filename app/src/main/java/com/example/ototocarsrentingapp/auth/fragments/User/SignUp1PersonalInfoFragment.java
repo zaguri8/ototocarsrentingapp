@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,19 +19,26 @@ import android.widget.Toast;
 import com.example.ototocarsrentingapp.R;
 import com.example.ototocarsrentingapp.auth.Validator.ValidationResult;
 import com.example.ototocarsrentingapp.auth.ViewModel.SignUpViewModel;
+import com.example.ototocarsrentingapp.databinding.FragmentSignUp1PersonalInfoBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
 
 public class SignUp1PersonalInfoFragment extends Fragment {
-
+    private FragmentSignUp1PersonalInfoBinding binding;
     private static final String TAG = "SignUp1PersonalInfoFragment";
 
 
-    public SignUp1PersonalInfoFragment() {
-        super(R.layout.fragment_sign_up1_personal_info);
-    }
 
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        // יצירת Binding מתוך ה-XML של ה-Fragment
+        binding = FragmentSignUp1PersonalInfoBinding.inflate(inflater, container, false);
+        return binding.getRoot();
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -38,11 +47,6 @@ public class SignUp1PersonalInfoFragment extends Fragment {
 
         SignUpViewModel vm = new ViewModelProvider(requireActivity()).get(SignUpViewModel.class);//קישור בין fragment 1 לviewmodel
         //input שדות
-        EditText etFirstName = view.findViewById(R.id.etFirstName);//שם פרטי
-        EditText etLastName = view.findViewById(R.id.etLastName);//שם משפחה
-        EditText etEmail = view.findViewById(R.id.etEmail);//אימייל
-        EditText etPassword = view.findViewById(R.id.etPassword);//סיסמה
-        EditText etConfirmPassword = view.findViewById(R.id.etConfirmPassword);//אישור סיסמה
 
 
         Button btnNext = view.findViewById(R.id.btnNext);
@@ -54,10 +58,10 @@ public class SignUp1PersonalInfoFragment extends Fragment {
             if(firstName==null){
                 return;
             }
-            String current = etFirstName.getText().toString();
+            String current = binding.etFirstName.getText().toString();
             if(!current.equals(firstName)){//בדיקה האם הערך שהמשתמש הקליד זהה לערך בview model
-                etFirstName.setText(firstName);
-                etFirstName.setSelection(firstName.length());//שמים את הסמן בסוף
+                binding.etFirstName.setText(firstName);
+                binding.etFirstName.setSelection(firstName.length());//שמים את הסמן בסוף
                 Log.d(TAG,"firstName was updated by the view model");
             }
         });
@@ -67,10 +71,10 @@ public class SignUp1PersonalInfoFragment extends Fragment {
             if(lastName==null){
                 return;
             }
-            String current = etLastName.getText().toString();
+            String current = binding.etLastName.getText().toString();
             if(!current.equals(lastName)){//בדיקה האם הערך שהמשתמש הקליד זהה לערך בview model
-                etLastName.setText(lastName);
-                etLastName.setSelection(lastName.length());
+                binding.etLastName.setText(lastName);
+                binding.etLastName.setSelection(lastName.length());
                 Log.d(TAG,"lastName was updated by the view model");
             }
         });
@@ -80,10 +84,10 @@ public class SignUp1PersonalInfoFragment extends Fragment {
             if(email==null){
                 return;
             }
-            String current = etEmail.getText().toString();
+            String current = binding.etEmail.getText().toString();
             if(!current.equals(email)){//בדיקה האם הערך שהמשתמש הקליד זהה לערך בview model
-                etEmail.setText(email);
-                etEmail.setSelection(email.length());
+                binding.etEmail.setText(email);
+                binding.etEmail.setSelection(email.length());
                 Log.d(TAG,"email was updated by the view model");
             }
         });
@@ -93,10 +97,10 @@ public class SignUp1PersonalInfoFragment extends Fragment {
             if(password==null){
                 return;
             }
-            String current = etPassword.getText().toString();
+            String current = binding.etPassword.getText().toString();
             if(!current.equals(password)){//בדיקה האם הערך שהמשתמש הקליד זהה לערך בview model
-                etPassword.setText(password);
-                etPassword.setSelection(password.length());
+                binding.etPassword.setText(password);
+                binding.etPassword.setSelection(password.length());
                 Log.d(TAG,"password was updated by the view model");
             }
         });
@@ -106,10 +110,10 @@ public class SignUp1PersonalInfoFragment extends Fragment {
             if(confirmPassword==null){
                 return;
             }
-            String current = etConfirmPassword.getText().toString();
+            String current = binding.etConfirmPassword.getText().toString();
             if(!current.equals(confirmPassword)){//בדיקה האם הערך שהמשתמש הקליד זהה לערך בview model
-                etConfirmPassword.setText(confirmPassword);
-                etConfirmPassword.setSelection(confirmPassword.length());
+                binding.etConfirmPassword.setText(confirmPassword);
+                binding.etConfirmPassword.setSelection(confirmPassword.length());
                 Log.d(TAG,"confirm password was updated by the view model");
             }
         });
@@ -128,85 +132,76 @@ public class SignUp1PersonalInfoFragment extends Fragment {
         //כפתור next
         btnNext.setOnClickListener(v -> {
             //בדיקה שהם הפרטי תקין
-            String firstName = etFirstName.getText().toString();
+            String firstName = binding.etFirstName.getText().toString();
             ValidationResult result=vm.setFirstName(firstName);
             if(!result.getIsValid()){
                 Log.d(TAG,"firstName is not valid");
-                tvValidationMessage.setText(result.getErrorMessage());
-                tvValidationMessage.setVisibility(View.VISIBLE);
-                etFirstName.requestFocus();
+                binding.layoutFirstName.setError(result.getErrorMessage());
                 return;
             }
             else{
                 Log.d(TAG,"first name is valid");
-                tvValidationMessage.setVisibility(View.GONE);
+                binding.layoutFirstName.setError(null);
             }
             //בדיקה עבור שם משפחה
 
-            String lastName = etLastName.getText().toString();
+            String lastName = binding.etLastName.getText().toString();
             ValidationResult result2=vm.set_last_name(lastName);
             if(!result2.getIsValid()){
                 Log.d(TAG,"lastName is not valid");
-                tvValidationMessage.setText(result2.getErrorMessage());
-                tvValidationMessage.setVisibility(View.VISIBLE);
-                etLastName.requestFocus();
+                binding.layoutLastName.setError(result2.getErrorMessage());
                 return;
             }
             else{
                 Log.d(TAG,"Last name is valid");
-                tvValidationMessage.setVisibility(View.GONE);
+                binding.layoutLastName.setError(null);
             }
 
             //בדיקה עבור אימייל
-            String email = etEmail.getText().toString();
+            String email = binding.etEmail.getText().toString();
             ValidationResult result3 = vm.set_email(email);
             if(!result3.getIsValid()){
                 Log.d(TAG,"email is not valid");
-                tvValidationMessage.setText(result3.getErrorMessage());
-                tvValidationMessage.setVisibility(View.VISIBLE);
-                etEmail.requestFocus();
+                binding.layoutEmail.setError(result3.getErrorMessage());
                 return;
             }
             else{
                 Log.d(TAG,"email is valid");
-                tvValidationMessage.setVisibility(View.GONE);
+                binding.layoutEmail.setError(null);
             }
-            String password = etPassword.getText().toString();
+            String password = binding.etPassword.getText().toString();
             ValidationResult result4=vm.setPassword(password);
             if(!result4.getIsValid()){
                 Log.d(TAG,"password is not valid");
-                tvValidationMessage.setText(result4.getErrorMessage());
-                tvValidationMessage.setVisibility(View.VISIBLE);
-                etPassword.requestFocus();
+               binding.layoutPassword.setError(result4.getErrorMessage());
                 return;
             }
             else{
                 Log.d(TAG,"password is valid");
-                tvValidationMessage.setVisibility(View.GONE);
+                binding.layoutPassword.setError(null);
             }
 
-            String confirmPassword = etConfirmPassword.getText().toString();
+            String confirmPassword = binding.etConfirmPassword.getText().toString();
             ValidationResult result5=vm.setConfirmPassword(password,confirmPassword);
             if(!result5.getIsValid()){
                 Log.d(TAG,"confirm password is not valid");
-                tvValidationMessage.setText(result5.getErrorMessage());
-                tvValidationMessage.setVisibility(View.VISIBLE);
-                etConfirmPassword.requestFocus();
+                binding.layoutConfirmPassword.setError(result5.getErrorMessage());
                 return;
             }
             else{
                 Log.d(TAG,"confirm password is valid");
-                tvValidationMessage.setVisibility(View.GONE);
+                binding.layoutConfirmPassword.setError(null);
             }
 
             //all good :)
             vm.setUserInfoProvided();
         });
+    }
 
-
-
-
-
-
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        // שחרור Binding למניעת memory leaks
+        binding = null;
     }
 }

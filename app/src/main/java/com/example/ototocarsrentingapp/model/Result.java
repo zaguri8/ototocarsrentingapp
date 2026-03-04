@@ -33,6 +33,6 @@ public class Result<T> {
         return e == null && data != null;
     }
     public boolean isFailure() {
-        return e != null;
+        return e != null && data == null;
     }
 }
