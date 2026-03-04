@@ -8,7 +8,9 @@
         <item name="colorSecondary">@color/my_secondary</item>
         <item name="colorOnSecondary">@color/black</item>
     </style>
-
+    <style name="CircleImage" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
     <style name="Theme.OTOTOCarsRentingApp" parent="Base.Theme.OTOTOCarsRentingApp" />
 
     <style name="RoundedImage">

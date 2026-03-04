@@ -4,6 +4,9 @@
         android:id="@+id/signOutOpt"
         android:title="Sign out" />
     <item
+        android:id="@+id/requestsOpt"
+        android:title="Car Requests" />
+    <item
         android:id="@+id/backOpt"
         android:title="Back" />
 </menu>

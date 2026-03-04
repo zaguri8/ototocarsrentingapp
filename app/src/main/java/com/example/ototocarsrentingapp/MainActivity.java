@@ -17,6 +17,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.ototocarsrentingapp.auth.AuthActivity;
 import com.example.ototocarsrentingapp.main.ViewModel.MainViewModel;
+import com.example.ototocarsrentingapp.model.Result;
 import com.example.ototocarsrentingapp.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -58,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
                 // We are on the "Home" screen
                 menu.getMenu().findItem(R.id.backOpt).setVisible(false);
             }
+            if(navController.getCurrentDestination().getId() == R.id.requestsFragment2
+            || navController.getCurrentDestination().getId() == R.id.requestsFragment) {
+                menu.getMenu().findItem(R.id.requestsOpt).setVisible(false);
+            }
             menu.setOnMenuItemClickListener(item -> {
                 if (item.getItemId() == R.id.signOutOpt) {
                     viewModel.signOut();
@@ -65,6 +70,18 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if(item.getItemId() == R.id.backOpt) {
                     navController.popBackStack();
+                    return true;
+                }
+                if(item.getItemId() == R.id.requestsOpt) {
+                    Result<User> userResult = viewModel.getUserLive().getValue();
+                    if(userResult==null||!userResult.isSuccess())return true;
+                    User user = userResult.getData();
+                    if(user.isRenter()) {
+                        navController.navigate(R.id.action_global_to_requestsFragment);
+                    }
+                    else {
+                        navController.navigate(R.id.action_global_to_requestsFragment2);
+                    }
                     return true;
                 }
                 return false;

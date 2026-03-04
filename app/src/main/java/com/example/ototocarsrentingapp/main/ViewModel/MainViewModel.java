@@ -157,7 +157,7 @@ public class MainViewModel extends ViewModel {
         DocumentReference refRenter = FirebaseFirestore
                 .getInstance()
                 .collection("renters")
-                .document(request.getSeller().getId())
+                .document(request.getRenter().getId())
                 .collection("sentRequests")
                 .document(request.getId());
         return refSeller.set(request)
@@ -170,6 +170,30 @@ public class MainViewModel extends ViewModel {
 
     public LiveData<List<CarRequest>> getRequests() {
         return requests;
+    }
+
+    public Task<CarRequest> updateCarRequestStatus(CarRequest request, CarRequest.RequestStatus status) {
+        request.setStatus(status);
+        DocumentReference refSeller = FirebaseFirestore
+                .getInstance()
+                .collection("sellers")
+                .document(request.getSeller().getId())
+                .collection("receivedRequests")
+                .document(request.getId());
+        DocumentReference refRenter = FirebaseFirestore
+                .getInstance()
+                .collection("renters")
+                .document(request.getRenter().getId())
+                .collection("sentRequests")
+                .document(request.getId());
+        return refSeller.set(request)
+                .continueWithTask(t -> {
+                    if (!t.isSuccessful()) throw t.getException();
+                    return refRenter.set(request).continueWith(t2 -> {
+                        if (!t2.isSuccessful()) throw t2.getException();
+                        return request;
+                    });
+                });
     }
 
     @Override

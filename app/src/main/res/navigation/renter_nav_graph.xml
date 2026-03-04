@@ -4,7 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/renter_nav_graph"
     app:startDestination="@id/renterHomeFragment">
-
+    <action
+        android:id="@+id/action_global_to_requestsFragment"
+        app:destination="@id/requestsFragment2"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     <fragment
         android:id="@+id/renterHomeFragment"
         android:name="com.example.ototocarsrentingapp.main.renter.RenterHomeFragment"
@@ -19,4 +25,8 @@
         android:name="com.example.ototocarsrentingapp.main.renter.CarInfoFragment"
         android:label="CarInfoFragment"
         tools:layout="@layout/fragment_car_info" />
+    <fragment
+        android:id="@+id/requestsFragment2"
+        android:name="com.example.ototocarsrentingapp.main.RequestsFragment"
+        android:label="RequestsFragment" />
 </navigation>

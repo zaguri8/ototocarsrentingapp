@@ -45,6 +45,7 @@ public class SignUp1PersonalInfoFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
+
         SignUpViewModel vm = new ViewModelProvider(requireActivity()).get(SignUpViewModel.class);//קישור בין fragment 1 לviewmodel
         //input שדות
 
@@ -196,6 +197,8 @@ public class SignUp1PersonalInfoFragment extends Fragment {
             //all good :)
             vm.setUserInfoProvided();
         });
+
+        binding.btnBack.setOnClickListener(v-> vm.onBack());
     }
 
     @Override
